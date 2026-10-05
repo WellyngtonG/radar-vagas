@@ -1,0 +1,141 @@
+# =============================================================
+# TEMPLATE DE PERFIL DO CANDIDATO — Radar de Vagas
+# =============================================================
+# Copie este arquivo para 'perfil.yaml' e personalize com os seus dados.
+# O robô usará estas informações para buscar vagas no LinkedIn, Indeed,
+# Glassdoor e 99Freelas, e calcular a pontuação de afinidade (0-100%).
+# =============================================================
+
+# Seu nome completo ou como prefere ser identificado nos relatórios
+nome: "Seu Nome Completo"
+
+# ─────────────────────────────────────────────────────────────
+# 1. HABILIDADES E TECNOLOGIAS (Hard Skills)
+# ─────────────────────────────────────────────────────────────
+# Liste todas as tecnologias que você domina ou tem experiência prática.
+# Quanto mais alinhadas com as vagas que você busca, maior o match.
+habilidades:
+  linguagens:
+    # Exemplos: Python, JavaScript, TypeScript, SQL, Java, C#, PHP, Go
+    - Python
+    - SQL
+
+  frameworks:
+    # Exemplos: React, Node.js, FastAPI, Django, Power BI, DAX, Angular
+    - Power BI
+    - Power Query
+
+  ferramentas:
+    # Exemplos: Docker, Git, GitHub, Excel Avançado, Jira, Figma, AWS, Linux
+    - Excel Avançado
+    - Git
+    - GitHub
+
+  areas:
+    # Domínios de negócio e metodologias que você conhece
+    # Exemplos: Análise de Dados, BI, Machine Learning, Scrum, Logística
+    - Análise de Dados
+    - Business Intelligence (BI)
+    - Regras de Negócio e KPIs
+
+# (Opcional) Tecnologias que você conhece apenas o básico / fundamentos.
+# Têm pontuação menor no cálculo de afinidade (peso 2 vs peso 5).
+skills_basico:
+  # - Docker
+  # - AWS
+
+# ─────────────────────────────────────────────────────────────
+# 2. SENIORIDADE DESEJADA
+# ─────────────────────────────────────────────────────────────
+# Níveis que você aceita (o algoritmo pontua vagas compatíveis e
+# penaliza níveis fora do seu alvo).
+# Opções comuns: Estágio, Júnior, Pleno, Sênior, Especialista, Lead
+senioridade:
+  - Júnior
+  - Pleno
+
+# ─────────────────────────────────────────────────────────────
+# 3. MODELO DE TRABALHO
+# ─────────────────────────────────────────────────────────────
+# Modelos aceitos. Vagas remotas recebem pontuação máxima de modelo.
+# Opções: Remoto, Híbrido, Presencial
+modelo_trabalho:
+  - Remoto
+  - Híbrido
+  - Presencial
+
+# ─────────────────────────────────────────────────────────────
+# 4. LOCALIZAÇÃO
+# ─────────────────────────────────────────────────────────────
+# Sua cidade/estado/país para busca de vagas presenciais e híbridas
+localizacao: "São Paulo, SP, Brasil"
+
+# Código do país para o scraper do Indeed:
+# Opções: brazil, usa, portugal, spain, united kingdom, canada, germany, etc.
+pais_indeed: "brazil"
+
+# Países para considerar em buscas internacionais ou remotas
+paises_interesse:
+  - Brasil
+
+# Idiomas que você domina
+idiomas:
+  - Português (nativo)
+  - Inglês (intermediário)
+
+# ─────────────────────────────────────────────────────────────
+# 5. TERMOS DE BUSCA (Palavras-chave para os scrapers)
+# ─────────────────────────────────────────────────────────────
+# Títulos exatos ou variações dos cargos que você procura.
+# O robô fará uma busca para CADA termo desta lista.
+# Recomenda-se entre 4 e 10 termos bem direcionados.
+termos_busca:
+  - "Analista de Dados Júnior"
+  - "Analista de BI Júnior"
+  - "Analista de Dados"
+  - "Analista de BI"
+  - "Assistente de Dados"
+
+# Sites onde o scraper buscará (linkedin, indeed, glassdoor, zip_recruiter)
+# Obs: linkedin e indeed são os mais estáveis e com maior volume.
+sites_busca:
+  - linkedin
+  - indeed
+
+# Categoria do 99freelas para buscar projetos freelancer extras.
+# Opções comuns:
+#   - web-mobile-e-software
+#   - design-e-multimidia
+#   - redacao-e-traducao
+#   - vendas-e-marketing
+# Deixe null para desativar a busca no 99freelas.
+categoria_99freelas: "web-mobile-e-software"
+
+# ─────────────────────────────────────────────────────────────
+# 6. FILTROS E EXCLUSÕES
+# ─────────────────────────────────────────────────────────────
+filtros:
+  # Quantidade máxima de vagas para coletar por termo em cada site
+  max_resultados_por_termo: 25
+
+  # Considerar apenas vagas postadas nos últimos X dias
+  dias_recentes: 7
+
+  # Termos que, se presentes no TÍTULO da vaga, fazem ela ser descartada
+  # ou receber penalidade severa. Útil para filtrar níveis indesejados.
+  excluir_termos:
+    - "Estágio"
+    - "Estagiário"
+    - "Estagiária"
+    - "Internship"
+    - "Jovem Aprendiz"
+    - "Senior"
+    - "Sênior"
+    - "Lead"
+    - "Staff"
+    - "Principal"
+    - "Gerente"
+    - "Manager"
+    - "Head"
+    - "Diretor"
+    - "Director"

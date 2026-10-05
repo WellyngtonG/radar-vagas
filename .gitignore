@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv_win/
+
+# Dados pessoais / resultados reais (nunca versionar)
+perfil.yaml
+perfil.json
+historico_vagas.txt
+ultimo_resumo_telegram.txt
+*.xlsx
+resultados/
+
+# OS
+.DS_Store

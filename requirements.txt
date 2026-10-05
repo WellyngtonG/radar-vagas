@@ -1,0 +1,5 @@
+python-jobspy
+pyyaml
+openpyxl
+beautifulsoup4
+requests
