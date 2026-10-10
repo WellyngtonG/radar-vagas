@@ -81,13 +81,15 @@ Se preferir preencher manualmente, copie `perfil.template.yaml` para `perfil.yam
 
 ## ⚙️ Como o Algoritmo de Afinidade Funciona
 
-O cálculo de afinidade (0% a 100%) no `radar_unified.py` leva em consideração:
+O cálculo de afinidade (0% a 100%) no `radar_unified.py` soma pontos e divide pelo máximo atingível (75 = 50 + 15 + 10), limitando o resultado entre 0 e 100:
 
-1. **Skills Principais (até 50 pontos):** Cada skill listada em `habilidades` encontrada na vaga soma 5 pontos (com teto de 50).
-2. **Skills Básicas (peso menor):** Cada item em `skills_basico` soma 2 pontos.
-3. **Senioridade (até 15 pontos):** Vagas com senioridade idêntica ao seu perfil ganham pontuação máxima.
-4. **Modelo de Trabalho (até 15 pontos):** Vagas remotas recebem bônus máximo. Presenciais e híbridas ganham pontos se você marcou essas opções.
-5. **Localização (até 20 pontos):** Vagas na mesma cidade/região definida ganham bônus de localização.
+1. **Skills (teto de 50 pontos):** cada skill de `habilidades` (todas as categorias) encontrada no título/descrição soma 5 pontos; cada item de `skills_basico` soma 2.
+2. **Senioridade (até 15 pontos):** nível igual ao do perfil = 15; vaga sem nível especificado = 10; se você é Pleno, vaga Júnior = 12 e Sênior = 5; demais casos = 3.
+3. **Modelo de Trabalho (até 10 pontos):** remoto aceito = 10; híbrido aceito = 8; presencial aceito = 7; demais casos = 3.
+4. **Termos de exclusão (penalidade):** cada termo de `excluir_termos` no título tira 30 pontos; só na descrição, tira 15.
+5. **Bônus pequenos:** open source (+3), startup/scale-up (+2), equity/stock (+2).
+
+Não há pontuação por localização: `localizacao` só é usada como local de busca no JobSpy.
 
 ---
 
@@ -100,14 +102,19 @@ Após salvar o seu `perfil.yaml`:
 python radar_unified.py
 
 # Rodar e gerar resumo formatado para o Telegram
+# (só grava ultimo_resumo_telegram.txt e mostra o preview; não envia nada)
 python radar_unified.py --telegram
 
-# Buscar apenas vagas remotas
+# Buscar apenas vagas remotas (força modelo_trabalho=remoto)
 python radar_unified.py --apenas-remoto
 
-# Filtrar por termo específico
+# Buscar só um termo (substitui os termos_busca do perfil)
 python radar_unified.py --termo "Analista de Dados"
+
+# Outras opções: --top N (padrão 20), --sem-excel
 ```
+
+O radar roda **manualmente**; na VM não há agendamento configurado para ele (verificado em 09/10/2026).
 
 ---
 
@@ -127,4 +134,4 @@ python radar_unified.py --termo "Analista de Dados"
 4. Execute o radar:
    python radar_unified.py
 
-O pipeline é 100% compatível com Windows. Ele coletará as vagas (LinkedIn, Indeed, Glassdoor, 99freelas), calculará as pontuações e gerará a planilha Excel na pasta.
+O pipeline é compatível com Windows. Ele coletará as vagas nos sites de `sites_busca` (padrão LinkedIn e Indeed; Glassdoor/ZipRecruiter se você incluir) e os projetos do 99freelas (se `categoria_99freelas` não for null), calculará as pontuações e gerará a planilha Excel na raiz da pasta.
